@@ -22,7 +22,7 @@ module "vpc" {
     Environment = "dev"
   }
 }
-
+/*
 module "asg" {
   source  = "terraform-aws-modules/autoscaling/aws"
 
@@ -174,3 +174,4 @@ module "asg" {
     Project     = "megasecret"
   }
 }
+*/
