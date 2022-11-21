@@ -35,11 +35,14 @@ module "ec2" {
   source = "../../modules/ec2"
 
   # alb.tf arguments
-  web-sg = [module.network.security_group_alb]
-  subnets = [module.vpc.private_subnets[0], module.vpc.private_subnets[3]]
+  web-alb-sg = [module.network.security_group_alb]
+  subnets = [module.vpc.public_subnets[0], module.vpc.public_subnets[1]]
   vpc-id = module.vpc.vpc_id
 
   # asg.tf arguments
   key-name = "jesse@jdkpc"
-
+  vpc-zone-identifier = [module.vpc.private_subnets[0], module.vpc.private_subnets[3]]
+  target-group-arns = module.ec2.target-group-arns
+  instance-type = "t2.micro"
+  web-servers-sg = [module.network.security_group_web]
 }
