@@ -25,13 +25,21 @@ module "vpc" {
 
 module "network" {
   source = "../../modules/network"
-  vpc_id = module.vpc.vpc_id
+
+  #security.tf arguments
+  vpc-id = module.vpc.vpc_id
   env = var.env
 }
 
 module "ec2" {
   source = "../../modules/ec2"
-  subnets = [module.vpc.private_subnets[0], module.vpc.private_subnets[3]]
+
+  # alb.tf arguments
   web-sg = [module.network.security_group_alb]
-  vpc_id = module.vpc.vpc_id
+  subnets = [module.vpc.private_subnets[0], module.vpc.private_subnets[3]]
+  vpc-id = module.vpc.vpc_id
+
+  # asg.tf arguments
+  key-name = "jesse@jdkpc"
+
 }
