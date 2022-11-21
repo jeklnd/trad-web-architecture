@@ -6,6 +6,10 @@ variable "web-sg" {
     default = []
 }
 
-variable "vpc_id" {
+variable "vpc-id" {
+    default = ""
+}
+
+variable "key-name" {
     default = ""
 }
