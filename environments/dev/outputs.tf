@@ -12,3 +12,7 @@ output "vpc_id" {
   description = "The ID of the Default VPC"
   value       = module.vpc.vpc_id
 }
+
+output "alb_dns_name" {
+  value = module.ec2.alb-dns-name
+}
