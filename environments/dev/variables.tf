@@ -17,3 +17,8 @@ variable "env" {
   default = "dev"
   description = "The environment being worked in"
 }
+
+variable "key_name" {
+  default = "jesse@jdkpc"
+  description = "(Optional) The key name that should be used for the instance."
+}
