@@ -12,8 +12,8 @@ resource "aws_security_group_rule" "inbound_http" {
     type = "ingress"
     from_port = 80
     to_port = 80
+    source_security_group_id = aws_security_group.alb.id
     protocol = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
     security_group_id = aws_security_group.web.id
 }
 
@@ -22,7 +22,7 @@ resource "aws_security_group_rule" "inbound_https" {
     from_port = 443
     to_port = 443
     protocol = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
+    source_security_group_id = aws_security_group.alb.id
     security_group_id = aws_security_group.web.id
 }
 
@@ -47,15 +47,15 @@ resource "aws_security_group" "alb" {
 resource "aws_security_group_rule" "inbound_all" {
     description = "Allow inbound traffic on the load balancer listener port."
     type = "ingress"
-    from_port = 0
-    to_port = 0
+    from_port = 80
+    to_port = 80
     protocol = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
     security_group_id = aws_security_group.alb.id
 }
 
 resource "aws_security_group_rule" "web-listener-and-health-check" {
-    description = "Allow outbound traffic to instances on the instance listener port."
+    description = "Allow outbound traffic to instances on the instance listener and health check port."
     type = "egress"
     from_port = 80
     to_port = 80
