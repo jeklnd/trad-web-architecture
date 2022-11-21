@@ -2,7 +2,7 @@ variable "subnets" {
     default = []
 }
 
-variable "web-sg" {
+variable "web-alb-sg" {
     default = []
 }
 
@@ -11,5 +11,21 @@ variable "vpc-id" {
 }
 
 variable "key-name" {
+    default = ""
+}
+
+variable "vpc-zone-identifier" {
+    default = []
+}
+
+variable "target-group-arns" {
+    default = []
+}
+
+variable "instance-type" {
+    default = "t2.micro"
+}
+
+variable "web-servers-sg" {
     default = ""
 }
