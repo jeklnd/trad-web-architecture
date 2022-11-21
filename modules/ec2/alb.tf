@@ -2,7 +2,7 @@ resource "aws_lb" "web-tier" {
     name = "web-lb"
     internal = false
     load_balancer_type = "application"
-    security_groups = var.web-sg
+    security_groups = var.web-alb-sg
     subnets = var.subnets
 }
 
@@ -26,13 +26,13 @@ resource "aws_lb_target_group" "web-tier" {
 
     health_check {
         enabled = true
-        healthy_threshold = 3
-        interval = 30
+        healthy_threshold = 2
+        interval = 15
         matcher = "200-299"
         path = "/"
         port = 80
         protocol = "HTTP"
-        timeout = "5"
+        timeout = "14"
         unhealthy_threshold = 3
     }
 }
