@@ -1,9 +1,9 @@
 /*
 resource "aws_launch_configuration" "web" {
-    name_prefix = "web servers"
+    name_prefix = "web-servers-"
     image_id = "ami-0b0dcb5067f052a63" # Amazon Linux 2 Kernel 5.10 AMI 2.0.20221103.3 x86_64 HVM gp2
     instance_type = "t2.micro"
-    key_name = var.key_name
+    key_name = var.key-name
     security_groups = [module.network.security_group_web]
 
     lifecycle {
