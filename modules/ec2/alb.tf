@@ -22,7 +22,7 @@ resource "aws_lb_target_group" "web-tier" {
     target_type = "instance"
     port = 80
     protocol = "HTTP"
-    vpc_id = var.vpc_id
+    vpc_id = var.vpc-id
 
     health_check {
         enabled = true
