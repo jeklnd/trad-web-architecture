@@ -5,7 +5,7 @@
 resource "aws_security_group" "web" {
     name = "${var.env}-web-sg"
     description = "web server security group"
-    vpc_id = var.vpc_id
+    vpc_id = var.vpc-id
 }
 
 resource "aws_security_group_rule" "inbound_http" {
@@ -41,7 +41,7 @@ resource "aws_security_group_rule" "outbound_all" {
 resource "aws_security_group" "alb" {
     name = "${var.env}-alb-sg"
     description = "alb security group"
-    vpc_id = var.vpc_id
+    vpc_id = var.vpc-id
 }
 
 resource "aws_security_group_rule" "inbound_all" {
