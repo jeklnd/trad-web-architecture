@@ -16,3 +16,7 @@ output "vpc_id" {
 output "alb_dns_name" {
   value = module.ec2.alb-dns-name
 }
+
+output "hosted_zone_name_servers" {
+  value = module.network.name-servers
+}
