@@ -17,6 +17,27 @@ resource "aws_lb_listener" "web-tier" {
     }
 }
 
+/*
+resource "aws_lb_listener_rule" "root-to-www" {
+    listener_arn = aws_lb_listener.web-tier.arn
+    
+    condition {
+        host_header {
+          values = ["jdkresume.com"]
+        }
+    }
+
+    action {
+        type = "redirect"
+        
+        redirect {
+            host = "www.jdkresume.com"
+            status_code = "HTTP_301"
+        }
+    }
+}
+*/
+
 resource "aws_lb_target_group" "web-tier" {
     name_prefix = "web-"
     target_type = "instance"
