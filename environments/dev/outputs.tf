@@ -21,6 +21,6 @@ output "hosted_zone_name_servers" {
   value = module.network.name-servers
 }
 
-ouptut "cloudfront_domain_name" {
+output "cloudfront_domain_name" {
   value = module.network.cloudfront-domain-name
 }
