@@ -1,0 +1,11 @@
+name: Terraform Apply
+# Only run this workflow on commits to the main branch
+on:
+  push:
+    branches:
+      - 'main'
+
+jobs:
+
+
+
