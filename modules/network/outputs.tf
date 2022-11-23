@@ -9,7 +9,7 @@ output "security_group_web" {
 }
 
 output "name-servers" {
-    value = aws_route53_zone.public.name_servers
+    value = data.aws_route53_zone.root.name_servers
 }
 
 output "cloudfront-domain-name" {
