@@ -6,3 +6,6 @@ variable "env" {
     default = ""
 }
 
+variable "alb-dns-name" {
+    default = ""
+}
