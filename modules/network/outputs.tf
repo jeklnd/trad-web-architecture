@@ -11,3 +11,7 @@ output "security_group_web" {
 output "name-servers" {
     value = aws_route53_zone.public.name_servers
 }
+
+output "cloudfront-domain-name" {
+    value = aws_cloudfront_distribution.web.domain_name
+}
