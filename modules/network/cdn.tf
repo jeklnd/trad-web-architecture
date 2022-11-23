@@ -1,6 +1,7 @@
 resource "aws_cloudfront_distribution" "web" {
     enabled = true
     price_class = "PriceClass_100"
+    aliases = ["jdkresume.com", "www.jdkresume.com"]
 
     origin {
         domain_name = var.alb-dns-name # The DNS domain name of the alb from which you want CloudFront to get objects for this origin.
@@ -10,7 +11,7 @@ resource "aws_cloudfront_distribution" "web" {
             http_port = 80 # The HTTP port the custom origin listens on.
             https_port = 443 # The HTTPS port the custom origin listens on.
             origin_protocol_policy = "http-only" # The protocol policy that you want CloudFront to use when fetching objects from your origin. 
-            origin_ssl_protocols = ["TLSv1", "TSLv1.1", "TSLv1.2"] # The minimum TLS/SSL protocol that CloudFront can use when it establishes an HTTPS connection to your origin. 
+            origin_ssl_protocols = ["TLSv1"] # The minimum TLS/SSL protocol that CloudFront can use when it establishes an HTTPS connection to your origin. 
         }
     }
 
@@ -39,31 +40,10 @@ resource "aws_cloudfront_distribution" "web" {
     }
 
     viewer_certificate { # The SSL configuration for this distribution
-        acm_certificate_arn = # The ARN of the AWS Certificate Manager certificate that you wish to use with this distribution.
+        acm_certificate_arn = aws_acm_certificate.cert.arn # The ARN of the AWS Certificate Manager certificate that you wish to use with this distribution.
         minimum_protocol_version = "TLSv1" # The minimum version of the SSL protocol that you want CloudFront to use for HTTPS connections.
         ssl_support_method = "sni-only" # Specifies how you want CloudFront to serve HTTPS requests.
     }
 }
 
-resource "aws_acm_certificate" "cert" {
-    domain_name = "jdkresume.com"
-    subject_alternative_names = ["*.jdkresume.com"]
-    validation_method = "DNS"
 
-    lifecycle {
-      create_before_destroy = true
-    }
-}
-
-resource "aws_acm_certificate_validation" "this" {
-    certificate_arn = aws_acm_certificate.cert.arn
-    validation_record_fqdns = [for record in aws_route53_record.example : record.fqdn]
-}  
-
-resource "aws_route53_record" {
-
-}
-
-resource "aws_route53_zone" "public" {
-    name = "jdkresume.com"
-}
