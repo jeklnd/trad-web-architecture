@@ -29,6 +29,9 @@ module "network" {
   #security.tf arguments
   vpc-id = module.vpc.vpc_id
   env = var.env
+
+  #cdn.tf arguments
+  alb-dns-name = module.ec2.alb-dns-name
 }
 
 module "ec2" {
