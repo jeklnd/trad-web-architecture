@@ -66,3 +66,7 @@ data "aws_instances" "private-ipv4-addresses" {
 output "web-and-app-server-private-ips" {
   value = data.aws_instances.private-ipv4-addresses.private_ips
 }
+
+output "db_endpoint" {
+  value = module.db.db_endpoint
+}
