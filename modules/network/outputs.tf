@@ -25,3 +25,8 @@ output "app-tier-servers-sg" {
     description = "ID of app-tier servers' security group"
     value = aws_security_group.app-tier-servers.id
 }
+
+output "bastion-sg" {
+    description = "ID of bastion hosts' security group"
+    value = aws_security_group.public.id
+}
