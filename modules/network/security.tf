@@ -2,7 +2,7 @@
 # public subnet security groups
 ####################################
 resource "aws_security_group" "public" {
-    name = "${var.env}-public-sg"
+    name = "${var.env}-bastion-sg"
     description = "public subnets security group"
     vpc_id = var.vpc-id
 }
@@ -31,7 +31,7 @@ resource "aws_security_group_rule" "egress-to-vpc" {
 
 # web tier alb sg
 resource "aws_security_group" "alb" {
-    name = "${var.env}-alb-sg"
+    name = "${var.env}-web-tier-alb-sg"
     description = "web tier alb security group"
     vpc_id = var.vpc-id
 }
@@ -52,16 +52,21 @@ resource "aws_security_group_rule" "web-listener-and-health-check" {
     from_port = 80
     to_port = 80
     protocol = "tcp"
-    source_security_group_id = aws_security_group.web.id
+    source_security_group_id = aws_security_group.web-tier-servers.id
     security_group_id = aws_security_group.alb.id
     description = "Allow outbound traffic to instances on the instance listener and health check ports."
 }
 
 # web tier servers
-resource "aws_security_group" "web" {
-    name = "${var.env}-web-sg"
+resource "aws_security_group" "web-tier-servers" {
+    name = "${var.env}-web-tier-servers-sg"
     description = "web tier servers security group"
     vpc_id = var.vpc-id
+    
+    timeouts {
+        create = "5m"
+        delete = "5m"
+    }
 }
 
 resource "aws_security_group_rule" "inbound_http" {
@@ -70,7 +75,7 @@ resource "aws_security_group_rule" "inbound_http" {
     to_port = 80
     source_security_group_id = aws_security_group.alb.id
     protocol = "tcp"
-    security_group_id = aws_security_group.web.id
+    security_group_id = aws_security_group.web-tier-servers.id
 }
 
 resource "aws_security_group_rule" "inbound_https" {
@@ -79,7 +84,7 @@ resource "aws_security_group_rule" "inbound_https" {
     to_port = 443
     protocol = "tcp"
     source_security_group_id = aws_security_group.alb.id
-    security_group_id = aws_security_group.web.id
+    security_group_id = aws_security_group.web-tier-servers.id
 }
 
 resource "aws_security_group_rule" "inbound_ssh_from_vpc_to_web_servers" {
@@ -88,7 +93,7 @@ resource "aws_security_group_rule" "inbound_ssh_from_vpc_to_web_servers" {
     to_port = 22
     protocol = "tcp"
     cidr_blocks = [var.vpc-cidr]
-    security_group_id = aws_security_group.web.id
+    security_group_id = aws_security_group.web-tier-servers.id
 }
 
 resource "aws_security_group_rule" "outbound_all" {
@@ -97,7 +102,7 @@ resource "aws_security_group_rule" "outbound_all" {
     to_port = 0
     protocol = "-1"
     cidr_blocks = ["0.0.0.0/0"]
-    security_group_id = aws_security_group.web.id
+    security_group_id = aws_security_group.web-tier-servers.id
 }
 
 ####################################
