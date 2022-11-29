@@ -5,7 +5,7 @@ output "security_group_alb" {
 
 output "web-tier-servers-sg" {
     description = "ID of web-tier servers' security group"
-    value = aws_security_group.web.id
+    value = aws_security_group.web-tier-servers.id
 }
 
 output "name-servers" {
@@ -29,4 +29,9 @@ output "app-tier-servers-sg" {
 output "bastion-sg" {
     description = "ID of bastion hosts' security group"
     value = aws_security_group.public.id
+}
+
+output "domain-name" {
+    description = "The name of the domain that you route traffic for"
+    value = data.aws_route53_zone.root.name
 }
