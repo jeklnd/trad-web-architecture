@@ -60,8 +60,6 @@ chown ec2-user:ec2-user -Rf /var/www
 
 echo "<h1>Hello World from $(hostname -f)</h1>" > /var/www/html/index.html
 EOF
-#<p>DB address: ${db_address}</p>
-#<p>DB port: ${db_port}</p>
 
     
     lifecycle {
