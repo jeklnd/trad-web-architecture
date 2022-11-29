@@ -31,6 +31,8 @@ module "network" {
   env = var.env
   vpc-cidr = module.vpc.vpc_cidr_block
 
+  my_ip = var.my_ip
+
   #cdn.tf arguments
   alb-dns-name = module.ec2.alb-dns-name
 }
