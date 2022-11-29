@@ -30,7 +30,7 @@ variable "instance-type" {
     default = "t2.micro"
 }
 
-variable "key-name" {
+variable "key_name" {
     default = ""
 }
 
