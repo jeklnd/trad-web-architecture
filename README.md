@@ -1,22 +1,28 @@
-# trad-web-architecture
+# 01 trad-web-architecture
 This project is an implementation of a traditional three-tier web application architecture inspired by this design:
 https://docs.aws.amazon.com/whitepapers/latest/web-application-hosting-best-practices/an-aws-cloud-architecture-for-web-hosting.html
 
 Technologies used: Terraform, VPC, EC2, ELB, ASG, CloudFront, HTML, CSS, Git, Bash
 
-# Inputting variable values:
+# 02 Getting set up
+Before running "terraform apply" for your own resume site, you must:
+1.) input the variable values in section 03
+2.) buy a domain and create a hosted zone in route53
+3.) create a key pair following steps 1-3 in section 05
+ 
+# 03 Inputting variable values:
 The following commands must be executed before running terraform apply to input the values of the key_name and my_ip variables:
     – export TF_VAR_key_name="your-key-name-here"
     – export TF_VAR_my_ip="your-external-ip-address-here"
 
-# Building the architecture:
+# 04 Building the architecture:
     – Change directories to the environment of choice, e.g. "cd ~/trad-web-architecture/environments/dev"
     – Run "terraform init"
     – Run "terraform plan"
     – Run "terraform apply" to review what resources will be created and type "yes"
     – Run "terraform destroy" to review what resources will be deleted and type "yes"
 
-# Securely accessing servers in private subnets with the bastion host
+# 05 Securely accessing servers in private subnets with the bastion host
 To access servers in private subnets with the bastion host from a Linux environment (e.g. WSL2), you must:
 
 1.) Create a key pair:
