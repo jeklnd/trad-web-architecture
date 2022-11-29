@@ -29,3 +29,7 @@ variable "instance-type" {
 variable "web-servers-sg" {
     default = ""
 }
+
+variable "app-tier-alb-sg" {
+    default = ""
+}
