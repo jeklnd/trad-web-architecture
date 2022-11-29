@@ -9,11 +9,13 @@ Before running "terraform apply" for your own resume site, you must:
 1.) input the variable values in section 03
 2.) buy a domain and create a hosted zone in route53
 3.) create a key pair following steps 1-3 in section 05
- 
+
 # 03 Inputting variable values:
 The following commands must be executed before running terraform apply to input the values of the key_name and my_ip variables:
     – export TF_VAR_key_name="your-key-name-here"
     – export TF_VAR_my_ip="your-external-ip-address-here"
+    – export TF_VAR_db_username="your-db-username-here"
+    – export TF_VAR_db_password="your-db-password-here"
 
 # 04 Building the architecture:
     – Change directories to the environment of choice, e.g. "cd ~/trad-web-architecture/environments/dev"
