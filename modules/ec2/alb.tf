@@ -3,7 +3,7 @@
 ####################################
 
 resource "aws_lb" "web-tier" {
-    name = "web-lb"
+    name = "web-alb"
     internal = false
     load_balancer_type = "application"
     security_groups = var.web-tier-alb-sg
