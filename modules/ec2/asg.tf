@@ -16,7 +16,7 @@ resource "aws_launch_configuration" "bastion" {
     name_prefix = "bastion-hosts-"
     image_id = var.image-id
     instance_type = var.instance-type
-    key_name = var.key-name
+    key_name = var.key_name
     security_groups = var.bastion-sg
     user_data = <<-EOF
 #!/bin/sudo bash
@@ -48,6 +48,7 @@ resource "aws_launch_configuration" "web" {
     name_prefix = "web-servers-"
     image_id = var.image-id
     instance_type = var.instance-type
+    key_name = var.key_name
     security_groups = var.web-tier-servers-sg
     user_data = <<-EOF
 #!/bin/sudo bash
@@ -87,6 +88,7 @@ resource "aws_launch_configuration" "app" {
     name_prefix = "app-servers-"
     image_id = var.image-id
     instance_type = var.instance-type
+    key_name = var.key_name
     security_groups = var.app-tier-servers-sg
     user_data = <<-EOF
 #!/bin/sudo bash
