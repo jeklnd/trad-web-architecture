@@ -6,8 +6,8 @@ resource "aws_lb" "web-tier" {
     name = "web-lb"
     internal = false
     load_balancer_type = "application"
-    security_groups = var.web-alb-sg
-    subnets = var.subnets
+    security_groups = var.web-tier-alb-sg
+    subnets = var.web-tier-alb-subnets
 }
 
 resource "aws_lb_listener" "web-tier" {
@@ -50,7 +50,7 @@ resource aws_lb "app-tier" {
     internal = true
     load_balancer_type = "application"
     security_groups = var.app-tier-alb-sg
-    subnets = var.private-app-subnets
+    subnets = var.app-tier-alb-subnets
 }
 
 resource "aws_lb_listener" "app-tier" {
