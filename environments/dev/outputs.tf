@@ -52,3 +52,17 @@ output "ssh-command" {
 output "linux-command-to-get-your-public-ip" {
   value = "dig +short myip.opendns.com @resolver1.opendns.com"
 }
+
+data "aws_instances" "private-ipv4-addresses" {
+  filter {
+    name = "subnet-id"
+    values = module.vpc.private_subnets
+  }
+  filter {
+    name = "vpc-id"
+    values = [module.vpc.vpc_id]
+  }
+}
+output "web-and-app-server-private-ips" {
+  value = data.aws_instances.private-ipv4-addresses.private_ips
+}
