@@ -44,6 +44,8 @@ module "ec2" {
   vpc-id = module.vpc.vpc_id
   app-tier-alb-sg = [module.network.app-tier-alb-sg]
 
+  private-app-subnets = [module.vpc.private_subnets[1], module.vpc.private_subnets[4]]
+
   # asg.tf arguments
   key-name = "jesse@jdkpc"
   vpc-zone-identifier = [module.vpc.private_subnets[0], module.vpc.private_subnets[3]]
