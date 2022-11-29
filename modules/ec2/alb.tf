@@ -1,3 +1,7 @@
+####################################
+# web tier alb
+####################################
+
 resource "aws_lb" "web-tier" {
     name = "web-lb"
     internal = false
@@ -36,3 +40,7 @@ resource "aws_lb_target_group" "web-tier" {
         unhealthy_threshold = 3
     }
 }
+
+####################################
+# app tier alb
+####################################
