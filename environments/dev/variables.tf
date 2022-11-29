@@ -27,3 +27,11 @@ variable "my_ip" {
     description = "The IP address from which to access the bastion host"
     sensitive = true
 }
+
+variable "db_username" {
+    default = ""
+}
+
+variable "db_password" {
+    default = ""
+}
