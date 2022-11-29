@@ -8,9 +8,9 @@ output "public_subnets" {
   value       = module.vpc.public_subnets
 }
 
-output "vpc_id" {
+output "vpc-id" {
   description = "The ID of the Default VPC"
-  value       = module.vpc.vpc_id
+  value = module.vpc.vpc_id
 }
 
 output "alb_dns_name" {
@@ -23,4 +23,9 @@ output "hosted_zone_name_servers" {
 
 output "cloudfront_domain_name" {
   value = module.network.cloudfront-domain-name
+}
+
+output "vpc-cidr" {
+  description = "The CIDR range of the VPC"
+  value = module.vpc.vpc_cidr_block
 }
