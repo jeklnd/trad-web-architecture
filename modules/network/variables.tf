@@ -9,3 +9,7 @@ variable "env" {
 variable "alb-dns-name" {
     default = ""
 }
+
+variable "vpc-cidr" {
+    default = ""
+}
