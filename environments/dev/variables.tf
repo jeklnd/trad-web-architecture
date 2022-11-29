@@ -19,8 +19,7 @@ variable "env" {
 }
 
 variable "key_name" {
-  default = "jesse@jdkpc"
-  description = "(Optional) The key name that should be used for the instance."
+  description = "The key name that should be used for the instance."
 }
 
 variable "my_ip" {
