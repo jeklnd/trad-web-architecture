@@ -14,11 +14,11 @@ variable "key-name" {
     default = ""
 }
 
-variable "vpc-zone-identifier" {
+variable "web-tier-vpc-zone-identifier" {
     default = []
 }
 
-variable "target-group-arns" {
+variable "web-tier-target-group-arns" {
     default = []
 }
 
@@ -35,5 +35,21 @@ variable "app-tier-alb-sg" {
 }
 
 variable "private-app-subnets" {
+    default = ""
+}
+
+variable "app-tier-vpc-zone-identifier" {
+    default = []
+}
+
+variable "app-tier-target-group-arns" {
+    default = []
+}
+
+variable "image-id" {
+    default = ""
+}
+
+variable "app-tier-servers-sg" {
     default = ""
 }
