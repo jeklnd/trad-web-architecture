@@ -44,3 +44,10 @@ resource "aws_lb_target_group" "web-tier" {
 ####################################
 # app tier alb
 ####################################
+
+resource aws_lb "app-tier" {
+    name = "app-alb"
+    internal = true
+    load_balancer_type = "application"
+    security_groups = var.app-tier-alb-sg
+}
