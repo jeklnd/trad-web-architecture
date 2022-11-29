@@ -50,4 +50,5 @@ resource aws_lb "app-tier" {
     internal = true
     load_balancer_type = "application"
     security_groups = var.app-tier-alb-sg
+    subnets = var.private-app-subnets
 }
