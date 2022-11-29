@@ -29,6 +29,7 @@ module "network" {
   #security.tf arguments
   vpc-id = module.vpc.vpc_id
   env = var.env
+  vpc-cidr = module.vpc.vpc_cidr_block
 
   #cdn.tf arguments
   alb-dns-name = module.ec2.alb-dns-name
@@ -41,6 +42,7 @@ module "ec2" {
   web-alb-sg = [module.network.security_group_alb]
   subnets = [module.vpc.public_subnets[0], module.vpc.public_subnets[1]]
   vpc-id = module.vpc.vpc_id
+  app-tier-alb-sg = [module.network.app-tier-alb-sg]
 
   # asg.tf arguments
   key-name = "jesse@jdkpc"
