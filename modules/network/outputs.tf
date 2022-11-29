@@ -35,3 +35,8 @@ output "domain-name" {
     description = "The name of the domain that you route traffic for"
     value = data.aws_route53_zone.root.name
 }
+
+output "db-sg" {
+    description = "ID of db security group"
+    value = aws_security_group.db.id
+}
