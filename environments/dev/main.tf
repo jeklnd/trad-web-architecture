@@ -65,3 +65,7 @@ module "ec2" {
   bastion-vpc-zone-identifier = [module.vpc.public_subnets[0], module.vpc.public_subnets[1]]
   bastion-sg = [module.network.bastion-sg]
 }
+
+module "db" {
+  source = "../../modules/db"
+}
