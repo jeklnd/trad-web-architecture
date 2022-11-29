@@ -21,6 +21,7 @@ resource "aws_security_group_rule" "egress-to-vpc" {
     from_port = 22
     to_port = 22
     protocol = "tcp"
+    #cidr_blocks = ["0.0.0.0/0"]
     cidr_blocks = [var.vpc-cidr]
     security_group_id = aws_security_group.public.id
 }
