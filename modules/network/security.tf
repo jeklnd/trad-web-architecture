@@ -102,7 +102,7 @@ resource "aws_security_group_rule" "app-tier-alb-egress" {
 resource "aws_security_group" "app-tier-servers" {
     name = "${var.env}-app-tier-servers-sg"
     description = "app tier servers security group"
-    vpc_id = var.vpc.id
+    vpc_id = var.vpc-id
 }
 
 resource "aws_security_group_rule" "http-ingress-from-app-tier-alb" {
@@ -130,3 +130,4 @@ resource "aws_security_group_rule" "egress-from-app-tier-servers" {
     protocol = "-1"
     cidr_blocks = ["0.0.0.0/0"]
     security_group_id = aws_security_group.app-tier-servers.id
+}
