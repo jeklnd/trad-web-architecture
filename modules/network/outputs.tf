@@ -15,3 +15,8 @@ output "name-servers" {
 output "cloudfront-domain-name" {
     value = aws_cloudfront_distribution.web.domain_name
 }
+
+output "app-tier-alb-sg" {
+    description = "ID of app tier alb security group"
+    value = aws_security_group.app-tier-alb.id
+}
