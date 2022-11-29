@@ -52,7 +52,7 @@ module "ec2" {
   # asg.tf arguments
   image-id = "ami-0b0dcb5067f052a63" # Amazon Linux 2 Kernel 5.10 AMI 2.0.20221103.3 x86_64 HVM gp2
   instance-type = "t2.micro"
-  key-name = "jesse@jdkpc"
+  key_name = var.key_name
 
   web-tier-vpc-zone-identifier = [module.vpc.private_subnets[0], module.vpc.private_subnets[3]]
   web-tier-target-group-arns = module.ec2.web-tier-target-group-arns
