@@ -68,4 +68,9 @@ module "ec2" {
 
 module "db" {
   source = "../../modules/db"
+
+  security_group_ids = [module.network.db-sg]
+  subnet_ids = [module.vpc.private_subnets[2], module.vpc.private_subnets[5]]
+  db_username = var.db_username
+  db_password = var.db_password
 }
