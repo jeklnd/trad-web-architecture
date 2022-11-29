@@ -13,3 +13,9 @@ variable "alb-dns-name" {
 variable "vpc-cidr" {
     default = ""
 }
+
+variable "my_ip" {
+    type = string
+    description = "The IP address from which to access the bastion host"
+    sensitive = true
+}
