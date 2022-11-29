@@ -1,9 +1,39 @@
 ####################################
+# bastion host asg
+####################################
+resource "aws_autoscaling_group" "bastion" {
+    name = "bastion-hosts"
+    min_size = 1
+    desired_capacity = 1
+    max_size = 2
+    vpc_zone_identifier = var.bastion-vpc-zone-identifier
+    launch_configuration = aws_launch_configuration.app.name
+    health_check_type = "EC2"
+    wait_for_capacity_timeout = "10m"
+}
+
+resource "aws_launch_configuration" "bastion" {
+    name_prefix = "bastion-hosts-"
+    image_id = var.image-id
+    instance_type = var.instance-type
+    key_name = var.key-name
+    security_groups = var.bastion-sg
+    user_data = <<-EOF
+#!/bin/sudo bash
+yum update -y
+EOF
+    
+    lifecycle {
+        create_before_destroy = true
+    }
+}
+
+####################################
 # web tier asg
 ####################################
 
 resource "aws_autoscaling_group" "web" {
-    name = "web-servers"
+    name = "web-tier-servers"
     min_size = 2
     desired_capacity = 2
     max_size = 6
@@ -19,7 +49,7 @@ resource "aws_launch_configuration" "web" {
     image_id = var.image-id # Amazon Linux 2 Kernel 5.10 AMI 2.0.20221103.3 x86_64 HVM gp2
     instance_type = var.instance-type
     key_name = var.key-name
-    security_groups = var.web-servers-sg
+    security_groups = var.web-tier-servers-sg
     user_data = <<-EOF
 #!/bin/sudo bash
 yum update -y
