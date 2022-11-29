@@ -60,6 +60,10 @@ resource "aws_launch_configuration" "app" {
     instance_type = var.instance-type
     key_name = var.key-name
     security_groups = var.app-tier-servers-sg
+    user_data = <<-EOF
+#!/bin/sudo bash
+yum update -y
+EOF
     
     lifecycle {
         create_before_destroy = true
