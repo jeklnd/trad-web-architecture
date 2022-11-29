@@ -49,9 +49,15 @@ module "ec2" {
   private-app-subnets = [module.vpc.private_subnets[1], module.vpc.private_subnets[4]]
 
   # asg.tf arguments
-  key-name = "jesse@jdkpc"
-  vpc-zone-identifier = [module.vpc.private_subnets[0], module.vpc.private_subnets[3]]
-  target-group-arns = module.ec2.target-group-arns
+  image-id = "ami-0b0dcb5067f052a63" # Amazon Linux 2 Kernel 5.10 AMI 2.0.20221103.3 x86_64 HVM gp2
   instance-type = "t2.micro"
-  web-servers-sg = [module.network.security_group_web]
+  key-name = "jesse@jdkpc"
+
+  web-tier-vpc-zone-identifier = [module.vpc.private_subnets[0], module.vpc.private_subnets[3]]
+  web-tier-target-group-arns = module.ec2.web-tier-target-group-arns
+  web-servers-sg = [module.network.web-tier-servers-sg]
+
+  app-tier-vpc-zone-identifier = [module.vpc.private_subnets[1], module.vpc.private_subnets[4]]
+  app-tier-target-group-arns = module.ec2.app-tier-target-group-arns
+  app-tier-servers-sg = [module.network.app-tier-servers-sg]
 }
