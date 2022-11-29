@@ -3,8 +3,8 @@ output "security_group_alb" {
     value = aws_security_group.alb.id
 }
 
-output "security_group_web" {
-    description = "ID of web security group"
+output "web-tier-servers-sg" {
+    description = "ID of web-tier servers' security group"
     value = aws_security_group.web.id
 }
 
@@ -19,4 +19,9 @@ output "cloudfront-domain-name" {
 output "app-tier-alb-sg" {
     description = "ID of app tier alb security group"
     value = aws_security_group.app-tier-alb.id
+}
+
+output "app-tier-servers-sg" {
+    description = "ID of app-tier servers' security group"
+    value = aws_security_group.app-tier-servers.id
 }
