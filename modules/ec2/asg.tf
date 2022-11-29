@@ -7,7 +7,7 @@ resource "aws_autoscaling_group" "bastion" {
     desired_capacity = 1
     max_size = 2
     vpc_zone_identifier = var.bastion-vpc-zone-identifier
-    launch_configuration = aws_launch_configuration.app.name
+    launch_configuration = aws_launch_configuration.bastion.name
     health_check_type = "EC2"
     wait_for_capacity_timeout = "10m"
 }
@@ -46,9 +46,8 @@ resource "aws_autoscaling_group" "web" {
 
 resource "aws_launch_configuration" "web" {
     name_prefix = "web-servers-"
-    image_id = var.image-id # Amazon Linux 2 Kernel 5.10 AMI 2.0.20221103.3 x86_64 HVM gp2
+    image_id = var.image-id
     instance_type = var.instance-type
-    key_name = var.key-name
     security_groups = var.web-tier-servers-sg
     user_data = <<-EOF
 #!/bin/sudo bash
@@ -88,11 +87,16 @@ resource "aws_launch_configuration" "app" {
     name_prefix = "app-servers-"
     image_id = var.image-id
     instance_type = var.instance-type
-    key_name = var.key-name
     security_groups = var.app-tier-servers-sg
     user_data = <<-EOF
 #!/bin/sudo bash
 yum update -y
+yum install -y httpd.x86_64
+systemctl start httpd
+systemctl enable httpd
+chown ec2-user:ec2-user -Rf /var/www 
+
+echo "<h1>Hello World from $(hostname -f)</h1>" > /var/www/html/index.html
 EOF
     
     lifecycle {
