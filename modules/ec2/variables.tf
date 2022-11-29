@@ -33,3 +33,7 @@ variable "web-servers-sg" {
 variable "app-tier-alb-sg" {
     default = ""
 }
+
+variable "private-app-subnets" {
+    default = ""
+}
