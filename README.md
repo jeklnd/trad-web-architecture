@@ -1,8 +1,21 @@
-# 01 trad-web-architecture
+# What is this project
 This project is an implementation of a traditional three-tier web application architecture inspired by this design:
 https://docs.aws.amazon.com/whitepapers/latest/web-application-hosting-best-practices/an-aws-cloud-architecture-for-web-hosting.html
 
-Technologies used: Terraform, VPC, EC2, ELB, ASG, CloudFront, HTML, CSS, Git, Bash
+Technologies used: Terraform, AWS, HTML/CSS, Git, Bash
+
+# What I learned
+- The fundamentals of networking with VPC
+- How to launch a custom VPC using an open-source Terraform module
+- How to create a SSL certificate with Amazon Credentials Manager
+- How to deliver content with low latency from anywhere in the world using Amazon Cloudfront
+- How to route traffic from my instances to a custom domain
+- How to deploy load balancers in front of autoscaling groups to achieve elasticity and scalability
+- How to deploy all the aforementioned resources as code with Terraform
+- How to work with Terraform state
+- How to avoid state lock errors by exiting a terraform apply command in process and set creation and destruction time limits to save time
+- How to export environment variables locally to ensure the project can be stored in GitHub securely
+- How to access instances in private subnets with a bastion host and ssh-agent
 
 # 02 Getting set up
 Before running "terraform apply" for your own resume site, you must:
@@ -46,3 +59,5 @@ To access servers in private subnets with the bastion host from a Linux environm
 
 5.) Log in to an ec2 instance in a private subnet from the bastion host: ssh -v -A ec2-user@ec2.instance.private.ipv4
 
+# Attribution
+This project was inspired by the three-tier web architecture described in a whitepaper by AWS titled "Web Hosting in the AWS Cloud" available https://docs.aws.amazon.com/whitepapers/latest/web-application-hosting-best-practices/an-aws-cloud-architecture-for-web-hosting.html.
