@@ -1,7 +1,5 @@
 # What is this project
-This project is an implementation of a traditional three-tier web application architecture inspired by this design:
-https://docs.aws.amazon.com/whitepapers/latest/web-application-hosting-best-practices/an-aws-cloud-architecture-for-web-hosting.html
-
+The project is a three-tier web application architecture build with traditional infrastructre
 Technologies used: Terraform, AWS, HTML/CSS, Git, Bash
 
 # What I learned
