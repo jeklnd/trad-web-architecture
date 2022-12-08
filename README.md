@@ -17,6 +17,9 @@ Technologies used: Terraform, AWS, HTML/CSS, Git, Bash
 - How to export environment variables locally to ensure the project can be stored in GitHub securely
 - How to access instances in private subnets with a bastion host and ssh-agent
 
+# 01 Getting the infrastructure working (in progress)
+- The background knowledge required for successfully deploying production-ready infrastructure in the AWS Cloud using Terraform is relatively high. With that being said, the following sections are necessary but not sufficient guidance on getting the infrastructure working on your own local machine. I'm happy to receive feedback on making the following documenation more comprehensive and useful:
+
 # 02 Getting set up
 Before running "terraform apply" for your own resume site, you must:
 1.) input the variable values in section 03
