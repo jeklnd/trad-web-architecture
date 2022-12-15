@@ -15,30 +15,29 @@ Technologies used: Terraform, AWS, HTML/CSS, Git, Bash
 - How to export environment variables locally to ensure the project can be stored in GitHub securely
 - How to access instances in private subnets with a bastion host and ssh-agent
 
-# 01 Getting the infrastructure working (in progress)
-- The background knowledge required for successfully deploying production-ready infrastructure in the AWS Cloud using Terraform is relatively high. With that being said, the following sections are necessary but not sufficient guidance on getting the infrastructure working on your own local machine. I'm happy to receive feedback on making the following documenation more comprehensive and useful:
+# 01 Getting the resources deployed
 
-# 02 Getting set up
+## 02 Getting set up
 Before running "terraform apply" for your own resume site, you must:
 1.) input the variable values in section 03
 2.) buy a domain and create a hosted zone in route53
 3.) create a key pair following steps 1-3 in section 05
 
-# 03 Inputting variable values:
+## 03 Inputting variable values:
 The following commands must be executed before running terraform apply to input the values of the key_name and my_ip variables:
     – export TF_VAR_key_name="your-key-name-here"
     – export TF_VAR_my_ip="your-external-ip-address-here"
     – export TF_VAR_db_username="your-db-username-here"
     – export TF_VAR_db_password="your-db-password-here"
 
-# 04 Building the architecture:
+## 04 Building the architecture:
     – Change directories to the environment of choice, e.g. "cd ~/trad-web-architecture/environments/dev"
     – Run "terraform init"
     – Run "terraform plan"
     – Run "terraform apply" to review what resources will be created and type "yes"
     – Run "terraform destroy" to review what resources will be deleted and type "yes"
 
-# 05 Securely accessing servers in private subnets with the bastion host
+## 05 Securely accessing servers in private subnets with the bastion host
 To access servers in private subnets with the bastion host from a Linux environment (e.g. WSL2), you must:
 
 1.) Create a key pair:
