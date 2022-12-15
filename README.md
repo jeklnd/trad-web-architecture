@@ -1,6 +1,6 @@
 # What is this project
-The project is a three-tier web application architecture build with traditional infrastructre
-Technologies used: Terraform, AWS, HTML/CSS, Git, Bash
+- The project is a three-tier web application architecture build with traditional infrastructre
+- Technologies used: Terraform, AWS, HTML/CSS, Git, Bash
 
 # What I learned
 - The fundamentals of networking with VPC
